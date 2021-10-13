@@ -1,0 +1,6 @@
+package hosimanage;
+
+class DoctorIndividual 
+{
+
+}
