@@ -3,8 +3,11 @@ package hosimanage;
 import hosimanage.ContactUs;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import javax.swing.*;
 import java.sql.*;
+import javax.imageio.ImageIO;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 
@@ -85,9 +88,15 @@ class HomePage {
         heading1.setForeground(new Color(0, 126, 112));            
         heading1.setBounds(screenSize.width-697,33,700,45);
 
+        BufferedImage img = null;
+        try {
+            img =  ImageIO.read(getClass().getResource("/images/logo.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
         // LOGO
-        ImageIcon image = new ImageIcon("C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Images\\logo.png");
+        ImageIcon image = new ImageIcon(img);
         JLabel label = new JLabel("", image, JLabel.CENTER);
         JPanel panel = new JPanel(new BorderLayout());
         panel.add( label, BorderLayout.CENTER );
@@ -139,9 +148,16 @@ class HomePage {
         mainpanel.setBounds(20, 130, 850, 450);
         
         
-        JLabel mainpanel_pic = new JLabel(new ImageIcon("C://Users//diabolicfeak//Documents//NetBeansProjects//hms//src//Images//mainpanel.jpg"));
-        mainpanel_pic.setBounds(20,130,850,450);
-        ImageIcon iconfounder1 = new ImageIcon("C://Users//diabolicfeak//Documents//NetBeansProjects//hms//src//Images//mainpanel.jpg");
+        BufferedImage img1 = null;
+        try {
+            img1 =  ImageIO.read(getClass().getResource("/images/mainpanel.jpg"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+        JLabel mainpanel_pic = new JLabel(new ImageIcon(img1));
+        mainpanel_pic.setBounds(20,0,900,450);
+        ImageIcon iconfounder1 = new ImageIcon(img1);
         Image imgfounder1 = iconfounder1.getImage();
         Image newimg1 = imgfounder1.getScaledInstance(850, 550, Image.SCALE_SMOOTH ) ;  
         ImageIcon logoicon1 = new ImageIcon(newimg1);
