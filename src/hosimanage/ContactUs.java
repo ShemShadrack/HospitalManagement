@@ -3,8 +3,12 @@ package hosimanage;
 import hosimanage.AboutUs;
 import hosimanage.HomePage;
 import java.awt.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.*;
 import javax.swing.border.BevelBorder;
 
@@ -56,9 +60,15 @@ public class ContactUs
         heading1.setForeground(new Color(0, 126, 112));            
         heading1.setBounds(screenSize.width-697,33,700,45);
             
+        BufferedImage img = null;
+        try {
+            img =  ImageIO.read(getClass().getResource("/images/logo.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
   
         // LOGO
-        ImageIcon image = new ImageIcon("C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Images\\logo.png");
+        ImageIcon image = new ImageIcon(img);
         JLabel label = new JLabel("", image, JLabel.CENTER);
         JPanel panel = new JPanel(new BorderLayout());
         panel.add( label, BorderLayout.CENTER );
@@ -107,9 +117,16 @@ public class ContactUs
         mainbodypanel.setBounds(5,110,screenSize.width-10,screenSize.height-(screenSize.height/4));
         mainbodypanel.setBackground(new Color(0,0,0,0));
 
+        BufferedImage img1 = null;
+        try {
+            img1 =  ImageIO.read(getClass().getResource("/images/map.jpg"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
         //create map image
         JLabel map = new JLabel();
-		ImageIcon icon_map = new ImageIcon("Images//map.jpg");
+		ImageIcon icon_map = new ImageIcon(img1);
         Image img_map = icon_map.getImage();
         Image newimg_map = img_map.getScaledInstance(350, 350, Image.SCALE_SMOOTH ) ;  
         ImageIcon logoicon_map = new ImageIcon(newimg_map);
@@ -187,7 +204,7 @@ public class ContactUs
                 {
                     // Connection conn=DriverManager.getConnection(
                     // "jdbc:ucanaccess://C://Users//Sreeram//Documents//NetBeansProjects//hms//src//Database//Hospital.accdb");     
-                    Connection conn = DriverManager.getConnection("jdbc:odbc:hospital");
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.64.3/hms","torga","");
 					System.out.println("Connection established");
                     PreparedStatement pst = conn.prepareStatement("insert into contactus(email,comments) values (?,?)");
                     pst.setString(1, email.getText()); 

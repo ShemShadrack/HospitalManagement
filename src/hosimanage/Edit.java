@@ -3,6 +3,10 @@ package hosimanage;
 import hosimanage.ContactUs;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
@@ -60,9 +64,16 @@ class Edit
             heading1.setForeground(new Color(0, 126, 112));            
             heading1.setBounds(screenSize.width-697,43,700,45);
             
-  
+   
+            BufferedImage img = null;
+            try {
+                img =  ImageIO.read(getClass().getResource("/images/logo.png"));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            
             // LOGO
-            ImageIcon image = new ImageIcon("C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Images\\logo.png");
+            ImageIcon image = new ImageIcon(img);
             JLabel label = new JLabel("", image, JLabel.CENTER);
             JPanel panel = new JPanel(new BorderLayout());
             panel.add( label, BorderLayout.CENTER );
