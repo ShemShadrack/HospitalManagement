@@ -3,6 +3,10 @@ package hosimanage;
 import hosimanage.ContactUs;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
@@ -79,8 +83,15 @@ class MenuPage
         heading1.setBounds(screenSize.width-697,33,700,45);
 
 
+        BufferedImage img = null;
+        try {
+            img =  ImageIO.read(getClass().getResource("/images/logo.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
         // LOGO
-        ImageIcon image = new ImageIcon("C:\\Users\\diabolicfeak\\Documents\\NetBeansProjects\\hms\\src\\Images\\logo.png");
+        ImageIcon image = new ImageIcon(img);
         JLabel label = new JLabel("", image, JLabel.CENTER);
         JPanel panel = new JPanel(new BorderLayout());
         panel.add( label, BorderLayout.CENTER );
@@ -253,7 +264,7 @@ class MenuPage
         {
             public void actionPerformed(ActionEvent ae)
             {
-		menupageframe.setVisible(false);
+		  menupageframe.setVisible(false);
                 new Edit();
             }
         });
@@ -645,10 +656,9 @@ class MenuPage
 
         //add panels to tabpane
         tabpane.setTabPlacement(SwingConstants.LEFT);
-        
 		
 	// Create vertical labels to render tab titles
-	tabpane.add(panel1,"<html>O<br>U<br>T<br>P<br>A<br>T<br>I<br>E<br>N<br>T</html>");
+	    tabpane.add(panel1,"<html>O<br>U<br>T<br>P<br>A<br>T<br>I<br>E<br>N<br>T</html>");
         tabpane.add(panel2,"<html>P<br>A<br>T<br>I<br>E<br>N<br>T<br> <br>D<br>B</html>");
         tabpane.add(panel3,"<html>D<br>O<br>C<br>T<br>O<br>R<br> <br>D<br>B</html>");
         tabpane.add(panel4,"<html>B<br>I<br>L<brl<br>");
